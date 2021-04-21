@@ -9,11 +9,20 @@ export default class GroupsIndexContainer extends Component {
     }
 
     componentDidMount() {
-        this.setState({
-            groups: [
-                {name: "Deadheads"}
-            ],
-            loading: false
+        fetch('http://localhost:3001/groups', {
+            method: 'get',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(resp => resp.json())
+        .then(groupsJson => {
+            console.log('groups', groupsJson)
+            this.setState({
+                groups: groupsJson,
+                loading: false 
+            })
         })
     }
 
