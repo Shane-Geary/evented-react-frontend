@@ -12,7 +12,9 @@ function App() {
               <NavLink to="/groups/new">New Groups</NavLink>
             </nav>
           <Switch>
-            <Route exact path="/">Groups</Route>
+            <Route exact path="/">
+              <GroupsIndexContainer />
+            </Route>
             <Route path="/groups/new">New Group</Route>
           </Switch>
         </Router>
