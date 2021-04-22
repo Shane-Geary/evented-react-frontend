@@ -15,7 +15,8 @@ function App() {
             <Route exact path="/">
               <GroupsIndexContainer />
             </Route>
-            <Route path="/groups/new">New Group</Route>
+            <Route path="/groups/new" render={(routerProps) => <GroupFormContainer {...routerProps}/>}>
+            </Route>
           </Switch>
         </Router>
     </div>
