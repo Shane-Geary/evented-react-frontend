@@ -1,7 +1,7 @@
 import React from 'react' 
 
 const GroupListItem = ({group}) => {
-    return <li className="" key={group.id}><h5>{group.name}</h5>
+    return <li className="border" key={group.id}><h5 className="card_title">{group.name}</h5>
     Favorite Event: {group.fav_event}
     <br/> 
     Favorite Genre: {group.fav_genre} 

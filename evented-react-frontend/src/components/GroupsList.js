@@ -4,11 +4,17 @@ import GroupListItem from './GroupListItem';
 const GroupsList = ({groups}) => {
     return(
     <>
-        <h1>All groups</h1>
+        <h1 className="title">All groups</h1>
         <br/>
-        <ul>
-            {groups.map(group => <GroupListItem key={group.id} group={group} />)}
-        </ul>
+        <div className="container">
+            <div className="container__column">
+                <ul>
+                    <div className="container__content">
+                        {groups.map(group => <GroupListItem key={group.id} group={group} />)}
+                    </div>
+                </ul>
+            </div>
+        </div>
     </>
     )
 }

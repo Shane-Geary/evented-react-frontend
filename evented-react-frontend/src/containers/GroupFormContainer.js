@@ -36,6 +36,7 @@ export default class GroupFormContainer extends Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit} className="">
+                <h1 className="title">Create Your Group</h1>
                 <input 
                 type="text"
                 name="name"
@@ -43,6 +44,8 @@ export default class GroupFormContainer extends Component {
                 value={this.state.name} 
                 placeholder="Name your Group" 
                 />
+                <br></br>
+                <br></br>
                 <input 
                 type="text"
                 name="fav_event"
@@ -50,6 +53,8 @@ export default class GroupFormContainer extends Component {
                 value={this.state.fav_event}
                 placeholder="Favorite Event Type"
                 />
+                <br></br>
+                <br></br>
                 <input 
                 type="text"
                 name="fav_genre"
@@ -57,6 +62,8 @@ export default class GroupFormContainer extends Component {
                 value={this.state.fav_genre}
                 placeholder="Favorite Genre"
                 />
+                <br></br>
+                <br></br>
                 <input 
                 type="text"
                 name="catchphrase"
@@ -64,7 +71,9 @@ export default class GroupFormContainer extends Component {
                 value={this.state.catchphrase}
                 placeholder="Groups Catchphrase"
                 />
-                <button type="submit">Add New Group</button>
+                <br></br>
+                <br></br>
+                <h2><button type="submit">Add New Group</button></h2>
             </form>
         )
     }
