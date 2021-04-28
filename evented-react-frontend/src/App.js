@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route, NavLink } from 'react-router-do
 import GroupsIndexContainer from './containers/GroupsIndexContainer';
 import GroupFormContainer from './containers/GroupFormContainer';
 import EventContainer from './containers/EventContainer';
+import EventShowContainer from './containers/EventShowContainer';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             </Route>
             <Route exact path="/groups/new" component={GroupFormContainer} />
             <Route path="/groups/:groupId/events/new" component={EventContainer} />
+            <Route path="/groups/:groupId" component={EventShowContainer} />
           </Switch>
         </Router>
     </div>
