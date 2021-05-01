@@ -21,7 +21,7 @@ export default class EventContainer extends Component {
         })
         .then(resp => resp.json())
         .then(eventJson => {
-            this.props.history.push(`/groups/${this.props.match.params.groupId}`)
+            this.props.history.push(`/groups/${this.props.match.params.groupId}`);
         })
     }
 

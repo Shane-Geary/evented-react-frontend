@@ -1,6 +1,11 @@
+import {
+    LOADING_GROUPS,
+    LOADED_GROUPS
+} from '.';
+
 export const fetchGroups = () => {
     return(dispatch) => {
-        dispatch({type: })
+        dispatch({type: LOADING_GROUPS})
         fetch('http://localhost:3001/groups', {
             method: 'get',
             headers: {
@@ -10,10 +15,7 @@ export const fetchGroups = () => {
         })
         .then(resp => resp.json())
         .then(groupsJson => {
-            this.setState({
-                groups: groupsJson,
-                loading: false 
-            })
-        })
+           dispatch({type: LOADED_GROUPS, payload: groupsJson}) 
+        });
     }
 }

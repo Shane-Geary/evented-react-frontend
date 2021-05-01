@@ -1,36 +1,41 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { fetchGroups } from '../actions/groups';
 import GroupsList from '../components/GroupsList';
 
-export default class GroupsIndexContainer extends Component {
-
-    state = {
-        groups: [],
-        loading: true
-    }
+class GroupsIndexContainer extends Component {
 
     componentDidMount() {
-        fetch('http://localhost:3001/groups', {
-            method: 'get',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(resp => resp.json())
-        .then(groupsJson => {
-            console.log('groups', groupsJson)
-            this.setState({
-                groups: groupsJson,
-                loading: false 
-            })
-        })
+        this.props.dispatchFetchGroups();
     }
 
     render() {
+        if(this.props.loadingState === "inactive") {
+            return null 
+        }
         return (
             <section>
-                {this.state.loading ? "loading_spinner" : <GroupsList groups={this.state.groups} /> } 
+                {this.props.loadingState === "loading" ? (
+                    "loading_spinner" 
+                ) : ( 
+                <GroupsList groups={this.props.groups} /> 
+                )} 
             </section>
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        groups: state.groups.arr,
+        loadingState: state.groups.loadingState
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        dispatchFetchGroups: () => dispatch(fetchGroups())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(GroupsIndexContainer);
