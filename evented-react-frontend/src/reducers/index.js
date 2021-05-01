@@ -1,3 +1,6 @@
 import { combineReducers } from 'redux';
+import GroupsReducer from './groupsReducer';
 
-export default combineReducers({})
+export default combineReducers({
+    groups: groupsReducer
+})
