@@ -43,8 +43,8 @@ const mapStateToProps = (state, { match } ) => {
     const groupId = match.params.groupId
     let loadingState = state.events.groupsLoaded[groupId] || "inactive"
     return {
-      group: state.groups.arr.find(group => group.id == groupId),
-      events: state.events.arr.filter(event => event.group_id == groupId),
+      group: state.groups.arr.find(group => group.id === groupId),
+      events: state.events.arr.filter(event => event.group_id === groupId),
       loadingState
     };
 };

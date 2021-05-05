@@ -51,18 +51,18 @@ export const createGroup = (formData) => {
             },
             body: JSON.stringify({group: formData})
         })
-        .then(res => res.json())
+        .then(resp => {
+            if (resp.ok) {
+                return resp.json()
+            } else {
+                return resp.json().then(errors => Promise.reject(errors))
+            }
+        })
         .then(groupJson => {
             dispatch({
                 type: CREATED_GROUP,
                 payload: groupJson
             });
-        })
-        .catch(errors => {
-            dispatch({
-                type: ERROR_CREATING_GROUP,
-                payload: errors
-            })
         })
     }
 }

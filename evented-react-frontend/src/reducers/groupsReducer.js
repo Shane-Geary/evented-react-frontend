@@ -1,15 +1,14 @@
 import {
-    ADD_GROUP,
     LOADING_GROUPS,
     LOADING_GROUP_EVENTS,
     LOADED_GROUPS,
-    FAILED_LOADING_GROUPS,
-    LOADED_GROUP_EVENTS
+    LOADED_GROUP_EVENTS,
+    CREATED_GROUP
 } from '../actions';
 
 const initialState = {
     loadingState: "inactive",
-    arr: [],
+    arr: []
 }
 
 export default function groupsReducer(state = initialState, action) {
@@ -21,7 +20,7 @@ export default function groupsReducer(state = initialState, action) {
         case LOADED_GROUPS:
             return {arr: action.payload, loadingState: "successful"};
         case LOADED_GROUP_EVENTS:
-            const foundGroup = state.arr.find(group => group.id == action.payload.group.id)
+            const foundGroup = state.arr.find(group => group.id === action.payload.group.id)
             if (foundGroup) {
                 return state
             } else {
@@ -30,6 +29,12 @@ export default function groupsReducer(state = initialState, action) {
                     arr: state.arr.concat(action.payload.group),
             };
         }
+        case CREATED_GROUP:
+            return {
+                ...state,
+                arr: state.arr.concat(action.payload),
+                errors: {}
+            }
         default:
             return state;
     }
