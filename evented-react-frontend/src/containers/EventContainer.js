@@ -1,27 +1,33 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { createEvent } from '../actions/events';
 
-export default class EventContainer extends Component {
+class EventContainer extends Component {
+
+    state = {
+        errors: {}
+    }
 
     handleSubmit = (e) => {
         e.preventDefault();
         const form = e.target;
-        const body = new FormData();
+        const formData = new FormData();
 
-        body.append('event[name]', form.name.value);
-        body.append('event[location]', form.location.value);
-        body.append('event[type]', form.type.value);
-        body.append('event[start_time]', form.start_time.value);
-        body.append('event[end_time]', form.end_time.value);
-        body.append('event[poster]', form.poster.files[0], form.poster.value);
-        body.append('event[group_id]', this.props.match.params.groupId);
+        formData.append('event[name]', form.name.value);
+        formData.append('event[location]', form.location.value);
+        formData.append('event[type]', form.type.value);
+        formData.append('event[start_time]', form.start_time.value);
+        formData.append('event[end_time]', form.end_time.value);
+        form.poster.files[0] && formData.append('event[poster]', form.poster.files[0], form.poster.value);
+        formData.append('event[group_id]', this.props.match.params.groupId);
 
-        fetch('http://localhost:3001/events', {
-            method: "post",
-            body
-        })
+        this.props.dispatchCreateEvent(formData)
         .then(resp => resp.json())
         .then(eventJson => {
             this.props.history.push(`/groups/${this.props.match.params.groupId}`);
+        })
+        .catch(errors => {
+            this.setState({errors})
         })
     }
 
@@ -29,7 +35,7 @@ export default class EventContainer extends Component {
         return (
             <form onSubmit={this.handleSubmit} className="">
                 <h1>New Event</h1>
-               <label htmlFor="name">Name</label> 
+               <label htmlFor="name">Name<span>{this.state.errors.name}</span></label> 
                <input 
                type="text" 
                name="name"
@@ -71,3 +77,11 @@ export default class EventContainer extends Component {
         )
     }
 }
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        dispatchCreateEvent: (formData) => dispatch(createEvent(formData))
+    };
+};
+
+export default connect(null, mapDispatchToProps)(EventContainer);

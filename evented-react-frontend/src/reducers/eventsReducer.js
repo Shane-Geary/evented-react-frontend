@@ -1,4 +1,5 @@
 import {
+    CREATED_EVENT,
     LOADED_GROUP_EVENTS,
     LOADING_GROUP_EVENTS
 } from '../actions';
@@ -20,9 +21,16 @@ export default function eventsReducer(state=initialState, action) {
                 groupsLoaded: {...state.groupsLoaded, 
                 [action.payload.group.id]: "successful",
                 },
-                arr: state.arr.filter(event => event.groupId !== action.payload.events).concat(action.payload.events)
+                arr: state.arr
+                    .filter((event) => event.group_id !== action.payload.group.id)
+                    .concat(action.payload.events),
+            }
+        case CREATED_EVENT:
+            return {
+                ...state,
+                arr: state.arr.concat(action.payload)
             }
         default:
-            return state
+            return state;
     }
 }

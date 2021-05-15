@@ -3,8 +3,7 @@ import {
     LOADING_GROUP_EVENTS,
     LOADED_GROUPS,
     LOADED_GROUP_EVENTS,
-    CREATED_GROUP,
-    ERROR_CREATING_GROUP
+    CREATED_GROUP
 } from '.';
 
 export const fetchGroups = () => {
@@ -28,18 +27,18 @@ export const fetchGroups = () => {
 }
 
 export const fetchGroup = (groupId) => {
-    return(dispatch) => {
-        dispatch({type: LOADING_GROUP_EVENTS, payload: groupId})
+    return (dispatch) => {
+        dispatch({ type: LOADING_GROUP_EVENTS, payload: groupId });
         fetch(`http://localhost:3001/groups/${groupId}`)
-            .then(resp => resp.json())
-            .then((groupEventsJson) => {
-                dispatch({
-                    type: LOADED_GROUP_EVENTS,
-                    payload: groupEventsJson
-                })
-            });
-        }
-}
+        .then((resp) => resp.json())
+        .then((groupEventsJson) => {
+            dispatch({
+                type: LOADED_GROUP_EVENTS,
+                payload: groupEventsJson
+            })
+        });
+    };
+};
 
 export const createGroup = (formData) => {
     return (dispatch) => {

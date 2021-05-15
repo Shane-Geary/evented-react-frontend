@@ -79,16 +79,10 @@ class GroupFormContainer extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-
-    }
-} 
-
 const mapDispatchToProps = (dispatch) => {
     return {
         dispatchCreateGroup: (formData) => dispatch(createGroup(formData)) 
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(GroupFormContainer);
+export default connect(null, mapDispatchToProps)(GroupFormContainer);
