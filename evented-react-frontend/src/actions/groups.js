@@ -43,13 +43,13 @@ export const fetchGroup = (groupId) => {
 export const createGroup = (formData) => {
     return (dispatch) => {
         return fetch('http://localhost:3001/groups', {
-            method: "POST",
+            method: 'POST',
             headers: {
                 "Accept": "application/json",
-                "Content-type": "application/json"
-            },
-            body: JSON.stringify({group: formData})
-        })
+                "Content-Type": "application/json",
+        },
+        body: JSON.stringify({group: formData})
+    })
         .then(resp => {
             if (resp.ok) {
                 return resp.json()

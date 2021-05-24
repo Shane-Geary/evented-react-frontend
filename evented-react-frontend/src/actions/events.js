@@ -2,7 +2,7 @@ import { CREATED_EVENT } from '.'
 
 export const createEvent = (formData) => {
     return (dispatch) => {
-        return fetch('http://localhost:3001', {
+        return fetch('http://localhost:3001/events', {
             method: 'POST',
             body: formData
         })  

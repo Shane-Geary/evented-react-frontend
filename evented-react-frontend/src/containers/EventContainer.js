@@ -15,7 +15,7 @@ class EventContainer extends Component {
 
         formData.append('event[name]', form.name.value);
         formData.append('event[location]', form.location.value);
-        formData.append('event[type]', form.type.value);
+        formData.append('event[event_type]', form.event_type.value);
         formData.append('event[start_time]', form.start_time.value);
         formData.append('event[end_time]', form.end_time.value);
         form.poster.files[0] && formData.append('event[poster]', form.poster.files[0], form.poster.value);
@@ -34,38 +34,38 @@ class EventContainer extends Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit} className="">
-                <h1>New Event</h1>
-               <label htmlFor="name">Name<span>{this.state.errors.name}</span></label> 
+               <h1 className="title">New Event</h1>
+               <label htmlFor="name">Name{" "}<span>{this.state.errors.name}</span></label> 
                <input 
                type="text" 
                name="name"
                id="name"
                />
-               <label htmlFor="location">Location</label>
+               <label htmlFor="location">Location{" "}</label>
                <input 
                type="text"
                name="location" 
                id="location" 
                />
-               <label htmlFor="type">Type</label>
+               <label htmlFor="event_type">Type Of Event{" "}</label>
                <input 
                type="text" 
-               name="type"
-               id="type" 
+               name="event_type"
+               id="event_type" 
                />
-               <label htmlFor="start_time">Start Time</label>
+               <label htmlFor="start_time">Start Time{" "}</label>
                <input 
                type="datetime-local"
                name="start_time" 
                id="start_time" 
                />
-               <label htmlFor="end_time">End Time</label>
+               <label htmlFor="end_time">End Time{" "}</label>
                <input 
                type="datetime-local"
                name="end_time" 
                id="end_time"
                />
-               <label htmlFor="poster">Poster</label>
+               <label htmlFor="poster">Poster{" "}</label>
                <input 
                type="file" 
                name="poster"

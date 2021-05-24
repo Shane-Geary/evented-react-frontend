@@ -22,8 +22,9 @@ class GroupFormContainer extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.dispatchCreateGroup(this.state).then(groupJson => {
-            this.props.history.push('/')
+        this.props.dispatchCreateGroup(this.state)
+        .then(groupJson => {
+            this.props.history.push('/groups')
         })
         .catch(errors => {
             this.setState({

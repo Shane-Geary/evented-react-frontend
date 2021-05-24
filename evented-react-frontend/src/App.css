@@ -180,10 +180,13 @@ background: #555 url(images/bottom.jpg) no-repeat;
 padding: 10px 0;
 } */
 
-#footer {
-text-align: center;
-color: #eee;
-font-size: 11px;
-padding: 0 0 10px 0;
+footer {
+  position: fixed;
+	border-top:1px solid #ABABAB;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #6d2828;
+  color: #ffffff;
+  text-align: center;
 }
-#footer a { color: #eee; }

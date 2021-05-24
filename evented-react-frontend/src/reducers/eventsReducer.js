@@ -9,7 +9,7 @@ const initialState = {
     arr: []
 }
 
-export default function eventsReducer(state=initialState, action) {
+export default function eventsReducer(state = initialState, action) {
     switch(action.type) {
         case LOADING_GROUP_EVENTS:
             return{
