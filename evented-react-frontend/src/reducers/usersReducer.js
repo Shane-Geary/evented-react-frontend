@@ -4,7 +4,7 @@ const initialState = {
     errors: []
 }
 
-export default function userReducer(state = initialState, action) {
+export default function usersReducer(state = initialState, action) {
     switch(action.type) {
         case "AUTH_FAILED":
             return {
@@ -12,6 +12,7 @@ export default function userReducer(state = initialState, action) {
                 errors: [].concat(action.payload)
             }
         case "LOGIN_USER":
+            // debugger
             const newUser = state.all.find(user => user.id === action.payload.id)
             if (newUser) {
                 return {...state, currentUser: action.payload}
@@ -20,6 +21,8 @@ export default function userReducer(state = initialState, action) {
             };
             case "LOGOUT_USER":
                 return {...state, currentUser: {} }
+            case "CREATING_OR_GETTING_USER":
+                return {...state, errors: [] }
             default:
                 return state;
     }

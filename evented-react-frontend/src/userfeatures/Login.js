@@ -1,52 +1,81 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { login } from '../actions/users';
-import {Link} from 'react-router-dom'
+import React, { Component } from 'react';  
+import RenderErrors from '../helpers/RenderErrors'; 
+import { Link, withRouter } from 'react-router-dom'
 
 class Login extends Component {
-    state = {
-      username: "",
-      password: ""
+    constructor(props) {
+        super(props);
+        this.state = {
+            user: {
+                username: '',
+                password: ''
+            },
+            submitted: false
+        };
+        this.handleInputChange = this.handleInputChange.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
     }
 
-    handleChange = event => {
+    handleInputChange = (event) => {
         this.setState({
-            [event.target.name]: event.target.value
-        });
+            ...this.state,
+            user: {
+                ...this.state.user,
+                [event.target.name]: event.target.value
+            }
+            
+        })
     }
 
-    handleSubmit = event => {
-        event.preventDefault()
-        this.props.login(this.state)
+    handleSubmit = async (event) => {
+        event.preventDefault();
+        this.setState({
+            ...this.state,
+            submitted: true
+        })
+        await this.props.login({user: this.state.user})
+        if (this.props.authErrors.length === 0) {
+            this.props.history.push('/groups')
+        }
     }
 
     render() {
+        const {user} = this.state;
+        const canSave = [user.username, user.password].every(Boolean)
         return (
+            <div>
             <form onSubmit={this.handleSubmit}>
-                <h1>Welcome back! Login to gain access</h1>
-                    <label>Username</label>
+                {this.state.submitted && <RenderErrors errors={this.props.authErrors} />}
+                <h1 className="title">Welcome back!</h1>
+                    <label htmlFor="username">Username</label>
                     <input
-                        name='username'
+                        type='username'
+                        name='username' 
                         placeholder='Username'
-                        value={this.state.username}
-                        onChange={this.handleChange}
+                        value={user.username}
+                        onChange={this.handleInputChange}
                         /><br/>
-                    <label>Password</label>
+                    <label htmlFor="password">Password</label>
                     <input
                         type='password'
                         name='password'
                         placeholder='Password'
-                        value={this.state.password}
-                        onChange={this.handleChange}
+                        value={user.password}
+                        onChange={this.handleInputChange}
                         /><br/>
-                    <input type='submit'/>
+                    <h2><button type="submit">Log In</button></h2>
             </form>
+            <p>
+            Don't have an account? 
+            <Link to='/signup'> Create an account</Link>
+        </p>
+        </div>
                 )
             }
         }
 
-  const mapDispatchToProps = dispatch => ({
-    login: userInfo => dispatch(login(userInfo))
-  })
+//   const mapDispatchToProps = dispatch => ({
+//     login: userInfo => dispatch(login(userInfo))
+//   })
 
-  export default connect(null, mapDispatchToProps)(Login);
+  export default withRouter(Login);

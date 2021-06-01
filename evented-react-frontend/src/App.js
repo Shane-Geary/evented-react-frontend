@@ -11,59 +11,61 @@ import EventShowContainer from './containers/EventShowContainer';
 import Home from './userfeatures/Home';
 import Login from './userfeatures/Login';
 import Signup from './userfeatures/Signup';
+import Nav from './userfeatures/Nav';
 
 import { connect } from 'react-redux';
-import { getProfile } from './actions/users';
+import { login, logoutUser, register } from './actions/users';
+import { Alert, success } from './helpers/notifications';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { 
-      isLoggedIn: false,
-      user: {}
-    };
-}
-  componentDidMount = () => {
-	  this.props.getProfile()
+//   constructor(props) {
+//     super(props);
+//     this.state = { 
+//       isLoggedIn: false,
+//       user: {}
+//     };
+// }
+
+  // componentDidMount = () => {
+	//   this.props.getProfile()
+  // }
+
+  // loginStatus = () => {
+  //   axios.get('http://localhost:3001/auto_login', 
+  //   {withCredentials: true})    
+  //     .then(resp => {
+  //     if (resp.data.auto_login) {
+  //       this.handleLogin(resp)
+  //     } else {
+  //       this.handleLogout()
+  //     }
+  //   })
+  //   .catch(error => console.log('api errors:', error))
+  // };
+
+  // handleLogin = ({data}) => {
+	//   console.log(data)
+  //   this.setState({
+  //     isLoggedIn: true,
+  //     user: {data}.user
+  //   })
+  // }
+
+  logout = () => {
+    localStorage.removeItem('token')
+    this.props.logoutUser()
+    success('Thanks for visiting, successfully logged out!')
   }
 
-  loginStatus = () => {
-    axios.get('http://localhost:3001/logged_in', 
-    {withCredentials: true})    
-      .then(resp => {
-      if (resp.data.logged_in) {
-        this.handleLogin(resp)
-      } else {
-        this.handleLogout()
-      }
-    })
-    .catch(error => console.log('api errors:', error))
-  };
-
-  handleLogin = ({data}) => {
-	  console.log(data)
-    this.setState({
-      isLoggedIn: true,
-      user: {data}.user
-    })
-  }
-
-  handleLogout = () => {
-    this.setState({
-    isLoggedIn: false,
-    user: {}
-    })
-  }
-
-  loggedIn = (props) => {
-  if (this.props.isLoggedIn === true) {
-    return <nav className="text-center p-4">
-    <NavLink className="inline-block px-4 py-2" exact activeClassName="active" to="/groups">Groups</NavLink>
-    <NavLink exact activeClassName="active" to="/groups/new">New Groups</NavLink>
-  </nav>;
-  }
-  return <Home />;
-}
+//   loggedIn = (props) => {
+//   if (this.props.isLoggedIn === true) {
+//     return <nav className="text-center p-4">
+//     <NavLink className="inline-block px-4 py-2" exact activeClassName="active" to="/groups">Groups</NavLink>
+//     <NavLink exact activeClassName="active" to="/groups/new">New Groups</NavLink>
+//   </nav>;
+//   }
+//   return <Home />;
+// }
 
   handleClick = () => {
     axios.delete('http://localhost:3001/logout', {withCredentials: true})
@@ -79,21 +81,25 @@ class App extends Component {
 // }
 
   render() {
-	
-    return (
+     return (
       <div className="App">
-		  Welcome {this.state.username}!
+        <h1>Welcome {this.props.currentUser.username}!</h1>
           <Router>
           	<nav className="text-center p-4">
           		<NavLink className="inline-block px-4 py-2" exact activeClassName="active" to="/groups">Groups</NavLink>
-     			<NavLink exact activeClassName="active" to="/groups/new">New Groups</NavLink>
-   			</nav>;
+     			    <NavLink exact activeClassName="active" to="/groups/new">New Groups</NavLink>
+   			    </nav>
+
             <Switch>
                 <Route exact path='/' component={Home}/>
-                <Route exact path='/login' render={ (props) => 
-				<Login {...props} handleLogin={this.handleLogin} /> }/>
-                <Route exact path='/signup' render={ (props) => 
-				<Signup {...props} handleLogin={this.handleLogin} /> }/> 
+
+                <Route exact path='/login'>
+				          <Login login={this.props.login} authErrors={this.props.authErrors} /> 
+                </Route>
+
+                <Route exact path='/signup'> 
+				          <Signup register={this.props.register} authErrors={this.props.authErrors} /> 
+                </Route>
 
                 <Route exact path="/groups">
                 <GroupsIndexContainer />
@@ -102,15 +108,12 @@ class App extends Component {
               <Route path="/groups/:groupId/events/new" component={EventContainer} />
               <Route path="/groups/:groupId" component={EventShowContainer} />
             </Switch>
-			<footer>
-			<h3>
-				{
-        			this.loginStatus ? 
-        			<Link to='/' onClick={this.handleClick}>Log Out</Link> : 
-        			null
-     			}
-			</h3>
-		  </footer>
+
+            <footer>
+              <nav>
+                <Nav />
+              </nav>
+            </footer>
           </Router>
 		  
       </div>
@@ -118,8 +121,18 @@ class App extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-	getProfile: () => dispatch(getProfile())
+const mapStateToProps = state => {
+  return {
+    authErrors: state.users.errors,
+    currentUser: state.users.currentUser,
+    users: state.users.all
+  }
 }
 
-export default connect(null, mapDispatchToProps)(App);
+const mapDispatchToProps = dispatch => ({
+  register: userInfo => dispatch(register(userInfo)),
+  login: userInfo => dispatch(login(userInfo)),
+  logoutUser: () => dispatch(logoutUser())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

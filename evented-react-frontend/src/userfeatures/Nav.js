@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import {logoutUser } from './actions/userActions';
+import { connect } from 'react-redux';
+import {logoutUser } from '../actions/users';
 import { Link } from 'react-router-dom'
 
 class Nav extends Component {
@@ -10,12 +11,13 @@ class Nav extends Component {
     localStorage.removeItem("token")
     // Remove the user object from the Redux store
     this.props.logoutUser()
+	
   	}
 
 	render() {
 	const auth = (<>
 		<Link to='/login'> Login</Link>
-		<Link to='/signup'> Sign up </Link>
+		<Link to='/signup'> Signup </Link>
 		</>)
 		return (
 			<nav>
