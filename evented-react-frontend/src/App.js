@@ -14,7 +14,7 @@ import Signup from './userfeatures/Signup';
 import Nav from './userfeatures/Nav';
 
 import { connect } from 'react-redux';
-import { login, logoutUser, register } from './actions/users';
+import { login, logoutUser, register, getProfile } from './actions/users';
 import { Alert, success } from './helpers/notifications';
 
 class App extends Component {
@@ -26,9 +26,9 @@ class App extends Component {
 //     };
 // }
 
-  // componentDidMount = () => {
-	//   this.props.getProfile()
-  // }
+  componentDidMount = () => {
+	  this.props.getProfile()
+  }
 
   // loginStatus = () => {
   //   axios.get('http://localhost:3001/auto_login', 
@@ -67,14 +67,14 @@ class App extends Component {
 //   return <Home />;
 // }
 
-  handleClick = () => {
-    axios.delete('http://localhost:3001/logout', {withCredentials: true})
-    .then(resp => {
-      this.handleLogout()
-    //   this.state.push('/')
-    })
-    .catch(error => console.log(error))
-  }
+  // handleClick = () => {
+  //   axios.delete('http://localhost:3001/logout', {withCredentials: true})
+  //   .then(resp => {
+  //     this.handleLogout()
+  //   //   this.state.push('/')
+  //   })
+  //   .catch(error => console.log(error))
+  // }
 
 // if (this.loggedIn) {
 // 	return <div>{this.props.username} is loggged in</div>;
@@ -132,7 +132,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
   register: userInfo => dispatch(register(userInfo)),
   login: userInfo => dispatch(login(userInfo)),
-  logoutUser: () => dispatch(logoutUser())
+  logoutUser: () => dispatch(logoutUser()),
+  getProfile: () => dispatch(getProfile())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

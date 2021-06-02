@@ -1,4 +1,4 @@
-import { postConfig } from '../helpers/configOptions';
+import { postConfig, getProfileConfig } from '../helpers/configOptions';
 import { error, success } from '../helpers/notifications';
 
 const loginUser = userObj => ({
@@ -50,28 +50,28 @@ export const login = (user) => {
     };
 };
 
-// export const getProfile = () => {
-//     return async dispatch => {
-//         try {
+export const getProfile = () => {
+    return async dispatch => {
+        try {
 
-//             const token = localStorage.token;
-//             if (token) {
-//                 const data = await fetch("http://localhost:3001/auto_login", getProfileConfig(token))
-//                     .then(resp => resp.json());
-//                 if (data.message) {
-//                     localStorage.removeItem('token')
+            const token = localStorage.token;
+            if (token) {
+                const data = await fetch("http://localhost:3001/auto_login", getProfileConfig(token))
+                    .then(resp => resp.json());
+                if (data.message) {
+                    localStorage.removeItem('token')
 
-//                 } else {
-//                     dispatch(loginUser(data.user))
-//                 };
+                } else {
+                    dispatch(loginUser(data.user))
+                };
 
-//             }
-//         } catch (e) {
-//             error(e)
-//             throw e
-//         }
-//     };
-// };
+            }
+        } catch (e) {
+            error(e)
+            throw e
+        }
+    };
+};
 
 export const logoutUser = () => ({
     type: 'LOGOUT_USER'

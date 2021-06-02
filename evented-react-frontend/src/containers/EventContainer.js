@@ -47,7 +47,7 @@ class EventContainer extends Component {
                name="location" 
                id="location" 
                />
-               <label htmlFor="event_type">Type Of Event{" "}</label>
+               <label htmlFor="event_type">Type Of Event(Concert, Sports, Theater){" "}</label>
                <input 
                type="text" 
                name="event_type"
