@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios'
 import './App.css'
 import { BrowserRouter as Router, Switch, Route, NavLink, Link } from 'react-router-dom';
 //containers
@@ -51,11 +50,11 @@ class App extends Component {
   //   })
   // }
 
-  logout = () => {
-    localStorage.removeItem('token')
-    this.props.logoutUser()
-    success('Thanks for visiting, successfully logged out!')
-  }
+  // logout = () => {
+  //   localStorage.removeItem('token')
+  //   this.props.logoutUser()
+  //   success('Thanks for visiting, successfully logged out!')
+  // }
 
 //   loggedIn = (props) => {
 //   if (this.props.isLoggedIn === true) {
@@ -83,7 +82,7 @@ class App extends Component {
   render() {
      return (
       <div className="App">
-        <h1>Welcome {this.props.currentUser.username}!</h1>
+        <h1>Welcome {this.props.currentUser.username}!</h1> 
           <Router>
           	<nav className="text-center p-4">
           		<NavLink className="inline-block px-4 py-2" exact activeClassName="active" to="/groups">Groups</NavLink>

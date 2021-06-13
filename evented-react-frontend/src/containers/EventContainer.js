@@ -20,6 +20,7 @@ class EventContainer extends Component {
         formData.append('event[end_time]', form.end_time.value);
         form.poster.files[0] && formData.append('event[poster]', form.poster.files[0], form.poster.value);
         formData.append('event[group_id]', this.props.match.params.groupId);
+        formData.append('event[user_id]', this.props.match.params.userId);
 
         this.props.dispatchCreateEvent(formData)
         .then(resp => resp.json())

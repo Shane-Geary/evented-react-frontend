@@ -83,7 +83,7 @@ class Signup extends React.Component {
             </form>
             <div className="mb-16 text-gray-dark">
                 Already have an account?
-                <Link to="/login" className="no-underline border-b border-blue text-blue-600"> Log in</Link>
+                <Link to="/login" className="label"> Log in</Link>
             </div>
         </div>
         );
