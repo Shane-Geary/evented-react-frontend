@@ -10,28 +10,23 @@ class EventShowContainer extends Component {
         loading: true
     }
 
-    componentDidMount() {
-        const groupId = this.props.match.params.groupId;
-        this.props.dispatchFetchGroup(groupId);
-    }
-
     render() {
-        if (this.props.loadingState !== "successful") {
-            return <div>Loading</div>;
-        }
+        console.log(this.props.group)
         return (
             <section>
                 <h1 className="title">{this.props.group.name}</h1>
                 <h2><p><Link to={`/groups/${this.props.group.id}/events/new`}>Add an Event</Link></p></h2>
-                <div>{this.state.events.map((event) => {
-                    <figure>
-                        <img alt={event.name} src={event.poster_url} />
-                        <h2>{event.name}</h2>
-                        <h3>{event.location}</h3>
-                        <h3>{event.event_type}</h3>
-                        <p>{event.start_time}</p>
-                        <p>{event.end_time}</p>
-                    </figure>
+                <div>{this.props.group.events.map((event) => {
+                return <figure>
+                            <img alt={event.name} src={event.poster_url} />
+                            <h1>{event.name}</h1>
+                            <h3>{event.location}</h3>
+                            <h3>{event.event_type}</h3>
+                            <p>{event.start_time}</p>
+                            <p>{event.end_time}</p>
+                            <br></br>
+                            <br></br>
+                        </figure>
                 })}
                 </div>
             </section>

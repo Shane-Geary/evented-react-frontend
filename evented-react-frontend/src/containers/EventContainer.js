@@ -22,56 +22,61 @@ class EventContainer extends Component {
         formData.append('event[group_id]', this.props.match.params.groupId);
         formData.append('event[user_id]', this.props.match.params.userId);
 
-        this.props.dispatchCreateEvent(formData)
-        .then(resp => resp.json())
-        .then(eventJson => {
-            this.props.history.push(`/groups/${this.props.match.params.groupId}`);
-        })
-        .catch(errors => {
-            this.setState({errors})
-        })
+        this.props.dispatchCreateEvent(formData, this.props.history, this.props.match.params.groupId)
     }
 
     render() {
         return (
             <form onSubmit={this.handleSubmit} className="">
                <h1 className="title">New Event</h1>
+               <fieldset>
                <label htmlFor="name">Name{" "}<span>{this.state.errors.name}</span></label> 
                <input 
                type="text" 
                name="name"
                id="name"
                />
+               </fieldset>
+               <fieldset>
                <label htmlFor="location">Location{" "}</label>
                <input 
                type="text"
                name="location" 
                id="location" 
                />
+               </fieldset>
+               <fieldset>
                <label htmlFor="event_type">Type Of Event(Concert, Sports, Theater){" "}</label>
                <input 
                type="text" 
                name="event_type"
                id="event_type" 
                />
+               </fieldset>
+               <fieldset>
                <label htmlFor="start_time">Start Time{" "}</label>
                <input 
                type="datetime-local"
                name="start_time" 
                id="start_time" 
                />
+               </fieldset>
+               <fieldset>
                <label htmlFor="end_time">End Time{" "}</label>
                <input 
                type="datetime-local"
                name="end_time" 
                id="end_time"
                />
+               </fieldset>
+               <fieldset>
                <label htmlFor="poster">Poster{" "}</label>
                <input 
                type="file" 
                name="poster"
                id="poster" 
                />
+               </fieldset>
 
                <h2><button type="submit">Add Event</button></h2>
             </form>
@@ -81,7 +86,7 @@ class EventContainer extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        dispatchCreateEvent: (formData) => dispatch(createEvent(formData))
+        dispatchCreateEvent: (formData, history, groupId) => dispatch(createEvent(formData, history, groupId))
     };
 };
 

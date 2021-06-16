@@ -17,13 +17,6 @@ import { login, logoutUser, register, getProfile } from './actions/users';
 import { Alert, success } from './helpers/notifications';
 
 class App extends Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = { 
-//       isLoggedIn: false,
-//       user: {}
-//     };
-// }
 
   componentDidMount = () => {
 	  this.props.getProfile()
