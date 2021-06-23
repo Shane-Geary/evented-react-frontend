@@ -79,7 +79,7 @@ class App extends Component {
           <Router>
           	<nav className="text-center p-4">
           		<NavLink className="inline-block px-4 py-2" exact activeClassName="active" to="/groups">Groups</NavLink>
-     			    <NavLink exact activeClassName="active" to="/groups/new">New Groups</NavLink>
+     			    <NavLink exact activeClassName="active" to="/groups/new">New Group</NavLink>
    			    </nav>
 
             <Switch>

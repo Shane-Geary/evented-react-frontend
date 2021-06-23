@@ -126,6 +126,21 @@ color: rgb(244, 246, 247);
 text-decoration: none;
 }
 
+h3 {
+  font-size: large;
+}
+
+figure {
+  display: inline-table;
+  position: relative;
+  width: 100px;
+  height: 100px;
+  padding: 50px;
+  margin: 15px;
+  border: 2px solid rgb(0, 225, 255);
+  background-color: rgb(82, 189, 117);
+}
+
 /* #menu {
 height: 30px;
 line-height: 30px;

@@ -3,7 +3,8 @@ import {
     LOADING_GROUP_EVENTS,
     LOADED_GROUPS,
     LOADED_GROUP_EVENTS,
-    CREATED_GROUP
+    CREATED_GROUP,
+    CREATED_EVENT
 } from '../actions';
 
 const initialState = {
@@ -35,7 +36,20 @@ export default function groupsReducer(state = initialState, action) {
                 arr: state.arr.concat(action.payload),
                 errors: {}
             }
+            case CREATED_EVENT:
+                //add the new event to the event property of the group in ?
+                // debugger
+                return {
+                    ...state,
+                    arr: state.arr.map(group => {
+                        if ( group.id === action.payload.group_id ) {
+                          return {...group, events: group.events.concat(action.payload) }
+                        } else {
+                          return group 
+                        }
+                      })
+                }
         default:
-            return state;
+            return state
     }
 }
