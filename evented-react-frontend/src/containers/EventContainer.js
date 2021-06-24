@@ -16,8 +16,14 @@ class EventContainer extends Component {
         formData.append('event[name]', form.name.value);
         formData.append('event[location]', form.location.value);
         formData.append('event[event_type]', form.event_type.value);
-        formData.append('event[start_time]', form.start_time.value);
-        formData.append('event[end_time]', form.end_time.value);
+        formData.append(
+            "event[start_time]",
+            new Date(form.start_time.value).toISOString()
+          );
+          formData.append(
+            "event[end_time]",
+            new Date(form.end_time.value).toISOString()
+          );
         form.poster.files[0] && formData.append('event[poster]', form.poster.files[0], form.poster.value);
         formData.append('event[group_id]', this.props.match.params.groupId);
         formData.append('event[user_id]', this.props.match.params.userId);
