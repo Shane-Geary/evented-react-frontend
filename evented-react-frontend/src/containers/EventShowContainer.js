@@ -11,16 +11,6 @@ class EventShowContainer extends Component {
         loading: true
     }
 
-    // date = new Date();
-
-    // sdf = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
-
-    // sdf.setTimeZone(TimeZone.getTimeZone("America/Los_Angeles"));
-// System.out.println(sdf.format(date)); // Prints date in Los Angeles
-
-// sdf.setTimeZone(TimeZone.getTimeZone("America/Chicago"));
-// System.out.println(sdf.format(date)); // Prints same date in Chicago
-
     render() {
         console.log(this.props.group)
         return (
@@ -31,14 +21,18 @@ class EventShowContainer extends Component {
                     // debugger
                 return ( 
                     <figure>
-                            <img alt={event.name} src={event.poster_url} />
+                            {/* <img alt={event.name} src={event.poster_url} /> */}
                             <h1>{event.name}</h1>
+                            <br></br>
                             Location:
                             <h3>{event.location}</h3>
+                            <br></br>
                             Type:
                             <h3>{event.event_type}</h3>
+                            <br></br>
                             Start:
                             <p>{format(new Date(event.start_time), 'Pp')}</p>
+                            <br></br>
                             End:
                             <p>{format(new Date(event.end_time), 'Pp')}</p>
                         </figure>

@@ -10,6 +10,11 @@
   text-align: center;
 }
 
+nav {
+  font-size: x-large;
+  font-family: Tahoma;
+}
+
 .label {
   font-size: 25px;
   color: rgb(98, 135, 184);
@@ -119,6 +124,10 @@ text-align: center;
 h1 {
   font-size: xx-large;
   font-family: monospace;
+  padding: 10px;
+  position: relative;
+  margin: 50px;
+  
 }
 
 h2 .hover {
@@ -133,10 +142,10 @@ h3 {
 figure {
   display: inline-table;
   position: relative;
-  width: 100px;
-  height: 100px;
+  width: 300px;
+  height: 300px;
   padding: 50px;
-  margin: 15px;
+  margin: 30px;
   border: 2px solid rgb(0, 225, 255);
   background-color: rgb(82, 189, 117);
 }

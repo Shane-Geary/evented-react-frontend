@@ -26,7 +26,7 @@ class Signup extends React.Component {
             }
         })
     }
- 
+
     handleSubmit = async (event) => {
         event.preventDefault();
         this.setState({

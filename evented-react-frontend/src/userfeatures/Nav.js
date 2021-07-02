@@ -11,7 +11,6 @@ class Nav extends Component {
     localStorage.removeItem("token")
     // Remove the user object from the Redux store
     this.props.logoutUser()
-	
   	}
 
 	render() {
