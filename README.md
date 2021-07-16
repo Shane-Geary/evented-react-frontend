@@ -1,23 +1,23 @@
-A JavaScript SPA with a Rails API on the back end. Lets users create and read logs of live events they have attended.
+A Web based application with React.js for the frontend functionality as well as Redux.js handling state with a Rails API for the backend.
 
-The application includes the functionality of creating new ticket objects with a form on the same page where the newly created ticket will be displayed, 
-as well as a drop down bar for options in the form.
+Users can create an account to create “groups” that prefer a certain type of live event and create “events” that they have attended to keep logs of.
 
-Explore: | [Demo:] (https://www.youtube.com/watch?v=CLh15CuzXPw&t=1s) | [Blog:] (https://shaneg25.github.io/javascript_project-_live_events) |
-[Backend:] (https://github.com/ShaneG25/live_events_backend) 
+<img width="1280" alt="Screen Shot 2021-07-16 at 11 27 53 AM" src="https://user-images.githubusercontent.com/59372986/125986316-c744c5a4-8be3-43fb-9d67-6918622b2151.png">
+
+Explore: | [Blog:] (https://shaneg25.github.io/react-_final_project-_evented) | [Backend:] (https://github.com/ShaneG25/evented-api)
 
 Tech Stack
 
-This Web App is built with the following:
+This Web App was built with the following:
 
 - Ruby [2.6.1]
 - Rails [~> 6.0.3] - Custom API
-- JavaScript to build a frontend SPA(single page application)
+- React components and Redux handling state
 - Custom CSS
 
 Backend installation:
 
-- Clone this repo to your local machine git clone <this-repo-url>
+- Clone this repo to your local machine git clone
 - run bundle install to install required dependencies
 - run rails db:create to create a database locally.
 - run rails db:migrate to create tables into the database.
@@ -26,6 +26,7 @@ Backend installation:
 
 Frontend installation:
 
-- Clone frontend repo to your local machine git clone <frontend-repo-url>
-- Ensure transit-backend is running locally 
-- run open index.html
+- Clone frontend repo to your local machine git clone
+- Ensure transit-backend is running locally
+- run yarn install 
+- run yarn start
