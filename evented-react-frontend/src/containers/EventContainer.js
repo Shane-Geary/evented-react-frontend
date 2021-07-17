@@ -5,8 +5,11 @@ import { createEvent } from '../actions/events';
 class EventContainer extends Component {
 
     state = {
-        errors: {}
+        errors: {},
+        num: 0
     }
+
+
 
     handleSubmit = (e) => {
         e.preventDefault();
@@ -29,6 +32,16 @@ class EventContainer extends Component {
         formData.append('event[user_id]', this.props.match.params.userId);
 
         this.props.dispatchCreateEvent(formData, this.props.history, this.props.match.params.groupId)
+    }
+
+    handleClick = event => {
+        event.preventDefault();
+        let count = this.state.num 
+        count += 1 
+        this.setState({
+            ...this.state,
+            num: count
+        })
     }
 
     render() {
@@ -85,6 +98,9 @@ class EventContainer extends Component {
                </fieldset>
 
                <h2><button type="submit">Add Event</button></h2>
+
+               <h1>A Counter Button... cuz why not?!</h1>
+               <h2><button onClick={this.handleClick}>{this.state.num}</button></h2>
             </form>
         )
     }

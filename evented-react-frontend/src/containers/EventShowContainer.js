@@ -35,6 +35,7 @@ class EventShowContainer extends Component {
                             <br></br>
                             End:
                             <p>{format(new Date(event.end_time), 'Pp')}</p>
+                            <button>Delete</button>
                         </figure>
                 )
                 })}
@@ -56,7 +57,8 @@ const mapStateToProps = (state, { match } ) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        dispatchFetchGroup: (groupId) => dispatch(fetchGroup(groupId))
+        dispatchFetchGroup: (groupId) => dispatch(fetchGroup(groupId)),
+        
     }
 }
 

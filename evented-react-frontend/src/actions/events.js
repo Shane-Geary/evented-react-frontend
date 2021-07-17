@@ -1,4 +1,5 @@
 import { CREATED_EVENT } from '.'
+import { DELETE_EVENT } from '.'
 
 export const createEvent = (formData, history, groupId) => {
     return (dispatch) => {
@@ -8,8 +9,7 @@ export const createEvent = (formData, history, groupId) => {
             headers: {authorization: `Bearer ${localStorage.token}`}
         })  
         .then(resp => {
-            if  (resp.ok) {
-                console.log("Hello1")
+            if (resp.ok) {
                 return resp.json()
             } else {
                 return resp.json().then(errors => Promise.reject(errors))
@@ -20,8 +20,9 @@ export const createEvent = (formData, history, groupId) => {
                 type: CREATED_EVENT,
                 payload: eventJson
             })
-            console.log("Hello2")
             history.push(`/groups/${groupId}`);
         })
     }
 }
+
+
