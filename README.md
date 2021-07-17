@@ -6,6 +6,13 @@ Users can create an account to create “groups” that prefer a certain type of
 
 Explore: | [Blog:] (https://shaneg25.github.io/react-_final_project-_evented) | [Backend:] (https://github.com/ShaneG25/evented-api)
 
+Demo:
+
+
+https://user-images.githubusercontent.com/59372986/126039484-794e694d-166c-4881-9b89-d2d2a1c4029c.mp4
+
+
+
 Tech Stack
 
 This Web App was built with the following:
