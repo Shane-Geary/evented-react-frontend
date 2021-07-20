@@ -25,4 +25,6 @@ export const createEvent = (formData, history, groupId) => {
     }
 }
 
-
+export const deleteEvent = () => {
+    
+}

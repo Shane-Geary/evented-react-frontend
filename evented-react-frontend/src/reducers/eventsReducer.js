@@ -2,7 +2,7 @@ import {
     CREATED_EVENT,
     LOADED_GROUP_EVENTS,
     LOADING_GROUP_EVENTS,
-    DELETE_EVENT
+    DELETED_EVENT
 } from '../actions';
 
 const initialState = {
@@ -31,7 +31,7 @@ export default function eventsReducer(state = initialState, action) {
                 ...state,
                 arr: state.arr.concat(action.payload)
             }
-        case DELETE_EVENT:
+        case DELETED_EVENT:
             return {
                 ...state,
                 events: state.events.filter(event => event !== action.payload)
