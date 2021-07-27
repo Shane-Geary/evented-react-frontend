@@ -12,13 +12,17 @@ class EventShowContainer extends Component {
         loading: true
     }
 
+    handleClick = event => {
+        event.preventDefault()
+        this.props.deleteEvent()
+    }
+
     render() {
         return (
             <section>
                 <h1 className="title">{this.props.group.name}</h1>
                 <h2><p><Link to={`/groups/${this.props.group.id}/events/new`}>Add an Event</Link></p></h2>
                 <div>{this.props.group.events.map((event) => {
-                    // debugger
                 return ( 
                     <figure>
                             {/* <img alt={event.name} src={event.poster_url} /> */}
@@ -35,7 +39,7 @@ class EventShowContainer extends Component {
                             <br></br>
                             End:
                             <p>{format(new Date(event.end_time), 'Pp')}</p>
-                            <button>Delete</button>
+                            <button onClick={this.handleClick}>Delete</button>
                         </figure>
                 )
                 })}
@@ -58,7 +62,7 @@ const mapStateToProps = (state, { match } ) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         dispatchFetchGroup: (groupId) => dispatch(fetchGroup(groupId)),
-        deleteEvent: events => dispatch(deleteEvent(events))
+        deleteEvent: () => dispatch(deleteEvent())
     }
 }
 
