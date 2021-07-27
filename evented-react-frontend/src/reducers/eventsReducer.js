@@ -33,9 +33,10 @@ export default function eventsReducer(state = initialState, action) {
             }
         case DELETED_EVENT:
             return {
-                ...state,
-                events: state.events.filter(event => event !== action.payload)
-            }
+                arr: [
+                    ...state.arr.filter(arr => arr !== action.payload)
+                ]
+            };
         default:
             return state;
     }

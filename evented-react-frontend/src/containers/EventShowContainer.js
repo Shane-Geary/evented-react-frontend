@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchGroup } from '../actions/groups';
-import { format,  } from 'date-fns';
+import { format } from 'date-fns';
+import { deleteEvent } from '../actions/events';
 
 class EventShowContainer extends Component {
     state = {
@@ -12,7 +13,6 @@ class EventShowContainer extends Component {
     }
 
     render() {
-        console.log(this.props.group)
         return (
             <section>
                 <h1 className="title">{this.props.group.name}</h1>
@@ -58,7 +58,7 @@ const mapStateToProps = (state, { match } ) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         dispatchFetchGroup: (groupId) => dispatch(fetchGroup(groupId)),
-        
+        deleteEvent: events => dispatch(deleteEvent(events))
     }
 }
 
