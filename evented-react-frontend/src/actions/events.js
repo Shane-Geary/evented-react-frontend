@@ -1,5 +1,5 @@
 import { CREATED_EVENT } from '.'
-import { DELETE_EVENT } from '.'
+import { DELETED_EVENT } from '.'
 
 export const createEvent = (formData, history, groupId) => {
     return (dispatch) => {
@@ -25,6 +25,7 @@ export const createEvent = (formData, history, groupId) => {
     }
 }
 
-export const deleteEvent = () => {
-    
-}
+export const deleteEvent = event => ({
+    type: "DELETED_EVENT",
+    payload: event
+});
