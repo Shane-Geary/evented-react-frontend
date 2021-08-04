@@ -4,7 +4,8 @@ import {
     LOADED_GROUPS,
     LOADED_GROUP_EVENTS,
     CREATED_GROUP,
-    CREATED_EVENT
+    CREATED_EVENT,
+    DELETED_GROUP
 } from '../actions';
 
 const initialState = {
@@ -38,7 +39,6 @@ export default function groupsReducer(state = initialState, action) {
             }
             case CREATED_EVENT:
                 //add the new event to the event property of the group in ?
-                // debugger
                 return {
                     ...state,
                     arr: state.arr.map(group => {
@@ -49,7 +49,13 @@ export default function groupsReducer(state = initialState, action) {
                         }
                       })
                 }
-        default:
-            return state
+            case DELETED_GROUP:
+                return {
+                    arr: [
+                        ...state.arr.filter(arr => arr !== action.payload)
+                    ]
+                };
+            default:
+                return state
     }
 }

@@ -24,7 +24,4 @@ export const createEvent = (formData, history, groupId) => {
     }
 }
 
-export const deleteEvent = events => ({
-    type: "DELETED_EVENT",
-    payload: events
-});
+

@@ -3,7 +3,8 @@ import {
     LOADING_GROUP_EVENTS,
     LOADED_GROUPS,
     LOADED_GROUP_EVENTS,
-    CREATED_GROUP
+    CREATED_GROUP,
+    DELETED_GROUP
 } from '.';
 
 export const fetchGroups = () => {
@@ -65,3 +66,8 @@ export const createGroup = (formData) => {
         })
     }
 }
+
+export const deleteGroup = groupId => ({
+    type: "DELETED_GROUP",
+    payload: groupId
+});

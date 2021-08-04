@@ -90,8 +90,4 @@ class Signup extends React.Component {
     }
 }
  
-// const mapDispatchToProps = dispatch => ({
-//     register: userInfo => dispatch(register(userInfo))
-// })
- 
 export default withRouter(Signup);

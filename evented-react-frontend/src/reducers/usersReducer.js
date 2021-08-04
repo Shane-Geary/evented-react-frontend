@@ -12,7 +12,6 @@ export default function usersReducer(state = initialState, action) {
                 errors: [].concat(action.payload)
             }
         case "LOGIN_USER":
-            // debugger
             const newUser = state.all.find(user => user.id === action.payload.id)
             if (newUser) {
                 return {...state, currentUser: action.payload}

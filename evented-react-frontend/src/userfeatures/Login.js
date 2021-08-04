@@ -74,8 +74,4 @@ class Login extends Component {
             }
         }
 
-//   const mapDispatchToProps = dispatch => ({
-//     login: userInfo => dispatch(login(userInfo))
-//   })
-
-  export default withRouter(Login);
+export default withRouter(Login);
