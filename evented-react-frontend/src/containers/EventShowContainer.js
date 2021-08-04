@@ -12,11 +12,6 @@ class EventShowContainer extends Component {
         loading: true
     }
 
-    handleClick = event => {
-        event.preventDefault()
-        this.props.deleteEvent()
-    }
-
     render() {
         return (
             <section>
@@ -39,7 +34,6 @@ class EventShowContainer extends Component {
                             <br></br>
                             End:
                             <p>{format(new Date(event.end_time), 'Pp')}</p>
-                            <button onClick={this.handleClick}>Delete</button>
                         </figure>
                 )
                 })}
@@ -62,7 +56,7 @@ const mapStateToProps = (state, { match } ) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         dispatchFetchGroup: (groupId) => dispatch(fetchGroup(groupId)),
-        deleteEvent: () => dispatch(deleteEvent())
+        deleteEvent: (groupId) => dispatch(deleteEvent(groupId))
     }
 }
 

@@ -1,5 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { deleteEvent } from '../actions';
+
+// handleClick = event => {
+//     event.preventDefault()
+//     this.props.deleteEvent()
+// }
 
 const GroupListItem = ({group}) => {
     return <li className="border" key={group.id}>
@@ -10,7 +17,14 @@ const GroupListItem = ({group}) => {
     <br/>
     Catchphrase: {group.catchphrase}
     <br/>
+    <button onClick={() => this.props.deleteEvent(props.events)}>Delete</button> 
     <br/></li>
 }
 
-export default GroupListItem;
+const mapDispatchToProps = dispatch => {
+    return {
+        deleteEvent: events => dispatch(deleteEvent(events))
+    };
+};
+
+export default connect(null, mapDispatchToProps)(GroupListItem);
