@@ -40,7 +40,7 @@ class EventContainer extends Component {
         count += 1 
         this.setState({
             ...this.state,
-            num: count
+            num: count 
         })
     }
 

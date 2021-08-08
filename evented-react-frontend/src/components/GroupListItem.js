@@ -15,9 +15,9 @@ const GroupListItem = ({group, props}) => {
     <br/> 
     Favorite Genre: {group.fav_genre} 
     <br/>
-    Catchphrase: {group.catchphrase}
+    Catchphrase: {group.catchphrase} 
     <br/>
-    <button onClick={() => props.deleteGroup(props.group)}>Delete</button> 
+    <button onClick={() => props.deleteGroup(props.groupId)}>Delete</button> 
     <br/></li>
 }
 

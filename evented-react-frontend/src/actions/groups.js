@@ -6,6 +6,7 @@ import {
     CREATED_GROUP,
     DELETED_GROUP
 } from '.';
+import { deleteGroupConfig } from '../helpers/configOptions';
 
 export const fetchGroups = () => {
     return(dispatch) => {
@@ -67,7 +68,7 @@ export const createGroup = (formData) => {
     }
 }
 
-export const deleteGroup = groupId => ({
+export const deleteGroup = (groupId) => ({
     type: "DELETED_GROUP",
     payload: groupId
 });
