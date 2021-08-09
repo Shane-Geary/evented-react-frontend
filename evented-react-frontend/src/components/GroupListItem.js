@@ -1,14 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { deleteGroup } from '../actions/groups';
+import DeleteGroupButton from '../helpers/DeleteGroupButton'
 
 // handleClick = event => {
 //     event.preventDefault()
 //     this.props.deleteEvent()
 // }
 
-const GroupListItem = ({group, props}) => {
+const GroupListItem = ({group, deleteGroupButton}) => {
     return <li className="border" key={group.id}>
     <h5 className="card_title"><Link to={`/groups/${group.id}`}>{group.name}</Link></h5>
     Favorite Event: {group.fav_event}
@@ -17,14 +17,8 @@ const GroupListItem = ({group, props}) => {
     <br/>
     Catchphrase: {group.catchphrase} 
     <br/>
-    <button onClick={() => props.deleteGroup(props.groupId)}>Delete</button> 
+    <deleteGroupButton
     <br/></li>
 }
 
-const mapDispatchToProps = dispatch => {
-    return {
-        deleteGroup: groupId => dispatch(deleteGroup(groupId))
-    };
-};
-
-export default connect(null, mapDispatchToProps)(GroupListItem);
+export default GroupListItem;

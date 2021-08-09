@@ -6,7 +6,8 @@ import {
     CREATED_GROUP,
     DELETED_GROUP
 } from '.';
-import { deleteGroupConfig } from '../helpers/configOptions';
+import { deleteGroupConfig } from '../helpers/configOptions'
+import { history } from '../helpers/history'
 
 export const fetchGroups = () => {
     return(dispatch) => {
@@ -67,6 +68,25 @@ export const createGroup = (formData) => {
         })
     }
 }
+
+export const fetchDeleteGroup = (groupId) => {
+    return async dispatch => {
+        try {
+            const token = localStorage.token;
+            if (token) {
+                const data = await fetch(`http://localhost:3001/groups/${groupId}`, deleteGroupConfig(token))
+                if (data.status === 204) {
+                    dispatch(deleteGroup(groupId))
+                    history.push('/groups')
+                } else {
+                    error(data.json().error)
+                };
+            } else {
+                history.push('/login')
+            };
+        } catch (e) { error(e) }
+    };
+};
 
 export const deleteGroup = (groupId) => ({
     type: "DELETED_GROUP",

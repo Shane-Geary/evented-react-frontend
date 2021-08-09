@@ -1,9 +1,9 @@
 import React, { Fragment } from 'react' 
 
-export default function deleteGroupButton ({ deleteGroup, group }) {
+export default function DeleteGroupButton ({ deleteGroup, group }) {
     return (
         <Fragment>
-            <button type="button" onClick={() => {deleteGroup.group.id}}>Delete</button>
+            <button type="button" onClick={() => {deleteGroup(group.id)}}>Delete</button>
         </Fragment>
     )
 }
