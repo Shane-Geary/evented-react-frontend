@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 import DeleteGroupButton from '../helpers/DeleteGroupButton'
 
 // handleClick = event => {
@@ -8,7 +7,7 @@ import DeleteGroupButton from '../helpers/DeleteGroupButton'
 //     this.props.deleteEvent()
 // }
 
-const GroupListItem = ({group, deleteGroupButton}) => {
+const GroupListItem = ({group, deleteGroup}) => {
     return <li className="border" key={group.id}>
     <h5 className="card_title"><Link to={`/groups/${group.id}`}>{group.name}</Link></h5>
     Favorite Event: {group.fav_event}
@@ -17,7 +16,7 @@ const GroupListItem = ({group, deleteGroupButton}) => {
     <br/>
     Catchphrase: {group.catchphrase} 
     <br/>
-    <deleteGroupButton
+    <DeleteGroupButton group={group} deleteGroup={deleteGroup}/>
     <br/></li>
 }
 

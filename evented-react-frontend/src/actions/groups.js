@@ -8,6 +8,7 @@ import {
 } from '.';
 import { deleteGroupConfig } from '../helpers/configOptions'
 import { history } from '../helpers/history'
+import { error } from '../helpers/notifications'
 
 export const fetchGroups = () => {
     return(dispatch) => {
@@ -89,6 +90,6 @@ export const fetchDeleteGroup = (groupId) => {
 };
 
 export const deleteGroup = (groupId) => ({
-    type: "DELETED_GROUP",
+    type: DELETED_GROUP,
     payload: groupId
 });

@@ -51,9 +51,8 @@ export default function groupsReducer(state = initialState, action) {
                 }
             case DELETED_GROUP:
                 return {
-                    arr: [
-                        ...state.arr.filter(arr => arr !== action.payload)
-                    ]
+                    ...state,
+                    arr: state.arr.filter(group => group.id !== action.payload)
                 };
             default:
                 return state

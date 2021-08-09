@@ -24,7 +24,7 @@ export const deleteGroupConfig = (token) => {
     return {
         method: "DELETE",
         headers: {
-            'Authorization': 'Bearer ${token}'
+            'Authorization': `Bearer ${token}`
         }
     }
 };
