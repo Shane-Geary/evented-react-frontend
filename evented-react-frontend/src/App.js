@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css'
-import { BrowserRouter as Router, Switch, Route, NavLink, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, NavLink } from 'react-router-dom';
 //containers
 import GroupsIndexContainer from './containers/GroupsIndexContainer';
 import GroupFormContainer from './containers/GroupFormContainer';
@@ -14,7 +14,6 @@ import Nav from './userfeatures/Nav';
 
 import { connect } from 'react-redux';
 import { login, logoutUser, register, getProfile } from './actions/users';
-import { Alert, success } from './helpers/notifications';
 
 class App extends Component {
 
