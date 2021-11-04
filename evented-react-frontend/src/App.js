@@ -18,12 +18,12 @@ import { login, logoutUser, register, getProfile } from './actions/users';
 class App extends Component {
 
   componentDidMount = () => {
-	  this.props.getProfile()
+	  this.props.getProfile();
   }
 
   render() {
      return (
-      <div className="App">
+      <div>
         <h1>Welcome {this.props.currentUser.username}!</h1> 
           <Router>
           	<nav className="text-center p-4">

@@ -22,7 +22,6 @@ export const register = (user) => {
                 localStorage.setItem('token', data.jwt)
                 dispatch(loginUser(data.user))
                 success(`Welcome ${data.user.username}, your account has been created!`)
-
             };
         } catch (e) {
             error(e)
@@ -53,7 +52,6 @@ export const login = (user) => {
 export const getProfile = () => {
     return async dispatch => {
         try {
-
             const token = localStorage.token;
             if (token) {
                 const data = await fetch("http://localhost:3001/auto_login", getProfileConfig(token))
@@ -64,7 +62,6 @@ export const getProfile = () => {
                 } else {
                     dispatch(loginUser(data.user))
                 };
-
             }
         } catch (e) {
             error(e)
